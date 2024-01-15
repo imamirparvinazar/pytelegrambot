@@ -4,7 +4,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const token = '6733502211:AAEvurMdCrLGtfByFvt6jI9uEMMTT83e9h0';
 
 // Replace 'YOUR_CHANNEL_ID' with your actual channel ID
-const channel = '-1001573630378';
+const channel = '-1002017075460';
 
 // Set the welcome message
 const welcomeMessage = 'Welcome to the bot! Type any message or send an image/video to forward it to the channel. \nDeveloper: @amirparvinazar';
