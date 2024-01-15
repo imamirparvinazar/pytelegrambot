@@ -7,7 +7,7 @@ const token = '6733502211:AAEvurMdCrLGtfByFvt6jI9uEMMTT83e9h0';
 const channel = '-1002017075460';
 
 // Set the welcome message
-const welcomeMessage = 'Welcome to the bot! Type any message or send an image/video to forward it to the channel. \n Developer: @amirparvinazar';
+const welcomeMessage = 'Welcome to the bot! Type any message or send an image/video to forward it to the channel. \nDeveloper: @amirparvinazar';
 
 // Create a new bot instance
 const bot = new TelegramBot(token, { polling: true });
@@ -26,24 +26,37 @@ bot.on('message', (msg) => {
   const video = msg.video;
 
   // Process text messages
-  if (message) {
+  if (message && photo === undefined) {
     const text = message + '\n\nراه های ارتباطی با ما:\n🌐 @crypto_invest2024\nکانال:\n🌐 @crypto_859099';
     bot.sendMessage(channel, text);
   }
 
   // Process photo messages
-  if (photo) {
+  if (photo & message === undefined) {
+    const caption = (msg.caption || '') + '\n\nراه های ارتباطی با ما:\n🌐 @crypto_invest2024\nکانال:\n🌐 @crypto_859099';
+    const photoId = photo[photo.length - 1].file_id;
+    bot.sendPhoto(channel, photoId, { caption: caption });
+  }
+
+  if (photo && message) {
     const caption = (msg.caption || '') + '\n\nراه های ارتباطی با ما:\n🌐 @crypto_invest2024\nکانال:\n🌐 @crypto_859099';
     const photoId = photo[photo.length - 1].file_id;
     bot.sendPhoto(channel, photoId, { caption: caption });
   }
 
   // Process video messages
-  if (video) {
+  if (video && message === undefined ) {
     const caption = (msg.caption || '') + '\n\nراه های ارتباطی با ما:\n🌐 @crypto_invest2024\nکانال:\n🌐 @crypto_859099';
     const videoId = video.file_id;
     bot.sendVideo(channel, videoId, { caption: caption });
   }
+
+  if (video && message) {
+    const caption = (msg.caption || '') + '\n\nراه های ارتباطی با ما:\n🌐 @crypto_invest2024\nکانال:\n🌐 @crypto_859099';
+    const videoId = video.file_id;
+    bot.sendVideo(channel, videoId, { caption: caption });
+  }
+
 
   bot.sendMessage(chatId, "Message Forwarded")
 });
