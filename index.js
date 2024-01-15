@@ -1,13 +1,13 @@
 const TelegramBot = require('node-telegram-bot-api');
 
 // Replace 'YOUR_TELEGRAM_BOT_TOKEN' with your actual bot token
-const token = '6812587488:AAFQAmQpyE6oI5_RT0KFZKqH0KIAG3CgaYw';
+const token = '6733502211:AAEvurMdCrLGtfByFvt6jI9uEMMTT83e9h0';
 
 // Replace 'YOUR_CHANNEL_ID' with your actual channel ID
-const channel = '-1001573630378';
+const channel = '-1002017075460';
 
 // Set the welcome message
-const welcomeMessage = 'Welcome to the bot! Type any message or send an image/video to forward it to the channel.';
+const welcomeMessage = 'Welcome to the bot! Type any message or send an image/video to forward it to the channel. \n Developer: @amirparvinazar';
 
 // Create a new bot instance
 const bot = new TelegramBot(token, { polling: true });
@@ -33,15 +33,17 @@ bot.on('message', (msg) => {
 
   // Process photo messages
   if (photo) {
-    const caption = (msg.caption || '') + ' [YOUR_VARIABLE]';
+    const caption = (msg.caption || '') + '\n\nراه های ارتباطی با ما:\n🌐 @crypto_invest2024\nکانال:\n🌐 @crypto_859099';
     const photoId = photo[photo.length - 1].file_id;
     bot.sendPhoto(channel, photoId, { caption: caption });
   }
 
   // Process video messages
   if (video) {
-    const caption = (msg.caption || '') + ' [YOUR_VARIABLE]';
+    const caption = (msg.caption || '') + '\n\nراه های ارتباطی با ما:\n🌐 @crypto_invest2024\nکانال:\n🌐 @crypto_859099';
     const videoId = video.file_id;
     bot.sendVideo(channel, videoId, { caption: caption });
   }
+
+  bot.sendMessage(chatId, "Message Forwarded")
 });
