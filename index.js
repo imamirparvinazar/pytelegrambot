@@ -26,37 +26,26 @@ bot.on('message', (msg) => {
   const video = msg.video;
 
   // Process text messages
-  if (message && photo === undefined) {
+  if (message && photo === undefined && video === undefined) {
     const text = message + '\n\nراه های ارتباطی با ما:\n🌐 @crypto_invest2024\nکانال:\n🌐 @crypto_859099';
     bot.sendMessage(channel, text);
+    bot.sendMessage(chatId, "Message Forwarded")
   }
 
   // Process photo messages
-  if (photo & message === undefined) {
+  if (photo) {
     const caption = (msg.caption || '') + '\n\nراه های ارتباطی با ما:\n🌐 @crypto_invest2024\nکانال:\n🌐 @crypto_859099';
     const photoId = photo[photo.length - 1].file_id;
     bot.sendPhoto(channel, photoId, { caption: caption });
+    bot.sendMessage(chatId, "Message Forwarded")
   }
 
-  if (photo && message) {
-    const caption = (msg.caption || '') + '\n\nراه های ارتباطی با ما:\n🌐 @crypto_invest2024\nکانال:\n🌐 @crypto_859099';
-    const photoId = photo[photo.length - 1].file_id;
-    bot.sendPhoto(channel, photoId, { caption: caption });
-  }
 
-  // Process video messages
-  if (video && message === undefined ) {
+  if (video) {
     const caption = (msg.caption || '') + '\n\nراه های ارتباطی با ما:\n🌐 @crypto_invest2024\nکانال:\n🌐 @crypto_859099';
     const videoId = video.file_id;
     bot.sendVideo(channel, videoId, { caption: caption });
+    bot.sendMessage(chatId, "Message Forwarded")
   }
 
-  if (video && message) {
-    const caption = (msg.caption || '') + '\n\nراه های ارتباطی با ما:\n🌐 @crypto_invest2024\nکانال:\n🌐 @crypto_859099';
-    const videoId = video.file_id;
-    bot.sendVideo(channel, videoId, { caption: caption });
-  }
-
-
-  bot.sendMessage(chatId, "Message Forwarded")
 });
